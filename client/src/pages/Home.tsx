@@ -262,9 +262,23 @@ export default function Home() {
             <h2 id="focus-title">{selected.host}</h2>
             <p className="focus-note">“{selected.note}”</p>
             <div className="focus-facts">
-              <span><Clock3 size={16} /> 7:00—8:00 P.M.</span>
-              <span><MapPin size={16} /> {selected.address}</span>
-              {selected.mapUrl && <a href={selected.mapUrl} target="_blank" rel="noreferrer"><ExternalLink size={14} /> Open map</a>}
+              <div className="focus-facts-meta">
+                <span><Clock3 size={16} /> 7:00—8:00 P.M.</span>
+                <span><MapPin size={16} /> {selected.address}</span>
+              </div>
+              {selected.mapUrl && (
+                <a
+                  href={selected.mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="focus-map-btn"
+                  aria-label={`Open Google Maps for ${selected.address}`}
+                >
+                  <MapPin size={15} />
+                  <span>Open in Google Maps</span>
+                  <ExternalLink size={14} />
+                </a>
+              )}
             </div>
           </div>
           <div className="focus-chant" aria-hidden="true"><span>ॐ</span><small>SAI RAM</small></div>

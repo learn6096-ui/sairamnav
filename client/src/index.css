@@ -152,8 +152,11 @@ h2 { margin-bottom: 20px; color: var(--maroon); font-size: clamp(40px, 5vw, 62px
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--focus-color); box-shadow: 0 0 0 5px color-mix(in srgb, var(--focus-color) 20%, transparent); }
 .focus-details h2 { margin: 12px 0 12px; color: #fffdf9; font-size: clamp(36px, 5vw, 60px); }
 .focus-note { max-width: 520px; margin-bottom: 22px; color: rgba(255,253,249,.75); font-family: 'Playfair Display', serif; font-style: italic; line-height: 1.5; font-size: 16px; }
-.focus-facts { display: flex; flex-wrap: wrap; gap: 16px; color: rgba(255,253,249,.9); font-size: 12px; }
-.focus-facts span { display: inline-flex; align-items: center; gap: 7px; }
+.focus-facts { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 4px; }
+.focus-facts-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; color: rgba(255,253,249,.9); font-size: 13px; }
+.focus-facts-meta span { display: inline-flex; align-items: center; gap: 7px; }
+.focus-map-btn { display: inline-flex; align-items: center; gap: 8px; color: #fffdf9; background: rgba(255,253,249,.2); border: 1.5px solid rgba(255,253,249,.42); padding: 9px 20px; border-radius: 999px; font-weight: 700; font-size: 13px; text-decoration: none; cursor: pointer; transition: all .2s ease; backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,.15); touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.focus-map-btn:hover, .focus-map-btn:active { background: rgba(255,253,249,.34); border-color: #fff; transform: translateY(-1px); }
 .focus-chant { width: 160px; height: 160px; display: grid; place-items: center; align-content: center; gap: 2px; justify-self: end; border-radius: 50%; border: 1px solid rgba(255,253,249,.3); background: radial-gradient(circle, rgba(255,253,249,.14), transparent 63%); }
 .focus-chant span { color: var(--focus-color); font-family: 'Playfair Display', serif; font-size: 62px; line-height: 1; }
 .focus-chant small { color: rgba(255,253,249,.72); letter-spacing: .25em; font-size: 9px; }
@@ -358,7 +361,7 @@ h2 { margin-bottom: 20px; color: var(--maroon); font-size: clamp(40px, 5vw, 62px
   .invitation-body .large-copy { font-size: 20px; }
   .invitation-signoff { align-items: start; flex-direction: column; gap: 8px; }
   .focus-section { padding-bottom: 80px; }
-  .focus-card { min-height: 360px; grid-template-columns: 1fr; gap: 21px; padding: 42px 33px; }
+  .focus-card { min-height: 420px; grid-template-columns: 1fr; gap: 20px; padding: 36px 24px 84px 24px; }
   .focus-date { width: 100px; height: 110px; }
   .focus-date strong { font-size: 49px; }
   .focus-chant { width: 100px; height: 100px; right: 30px; bottom: 33px; }
@@ -366,6 +369,11 @@ h2 { margin-bottom: 20px; color: var(--maroon); font-size: clamp(40px, 5vw, 62px
   .focus-chant small { font-size: 7px; }
   .focus-details h2 { font-size: 43px; }
   .focus-note { max-width: 280px; }
+  .focus-facts { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
+  .focus-facts-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; width: 100%; font-size: 13px; }
+  .focus-map-btn { width: 100%; max-width: 320px; min-height: 48px; justify-content: center; margin-top: 6px; font-size: 14px; background: rgba(255,253,249,.26); border: 1.5px solid rgba(255,253,249,.6); box-shadow: 0 4px 16px rgba(0,0,0,.2); }
+  .location-cell { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+  .location-cell a { width: fit-content; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 14px; margin-top: 4px; background: rgba(224,114,72,.09); border: 1px solid rgba(224,114,72,.28); border-radius: 999px; }
   .section-heading-row { align-items: start; flex-direction: column; }
   .section-heading-row h2 { margin-top: 20px; }
   .schedule-intro { align-items: start; flex-direction: column; gap: 16px; }
