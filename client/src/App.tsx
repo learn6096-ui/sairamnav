@@ -7,13 +7,14 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/sairamnav"} component={Home} />
+      <Route path={"/sairamnav/"} component={Home} />
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
+      {/* Fallback to Home so GitHub Pages direct visits and refreshes never 404 */}
+      <Route component={Home} />
     </Switch>
   );
 }
