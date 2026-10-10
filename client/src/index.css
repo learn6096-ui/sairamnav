@@ -157,6 +157,7 @@ h2 { margin-bottom: 20px; color: var(--maroon); font-size: clamp(40px, 5vw, 62px
 .focus-facts-meta span { display: inline-flex; align-items: center; gap: 7px; }
 .focus-map-btn { display: inline-flex; align-items: center; gap: 8px; color: #fffdf9; background: rgba(255,253,249,.2); border: 1.5px solid rgba(255,253,249,.42); padding: 9px 20px; border-radius: 999px; font-weight: 700; font-size: 13px; text-decoration: none; cursor: pointer; transition: all .2s ease; backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,.15); touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .focus-map-btn:hover, .focus-map-btn:active { background: rgba(255,253,249,.34); border-color: #fff; transform: translateY(-1px); }
+.map-om-symbol { display: inline-flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 700; line-height: 1; color: var(--focus-color, #f0c419); margin-right: 2px; filter: drop-shadow(0 1px 3px rgba(0,0,0,.35)); }
 .focus-chant { width: 160px; height: 160px; display: grid; place-items: center; align-content: center; gap: 2px; justify-self: end; border-radius: 50%; border: 1px solid rgba(255,253,249,.3); background: radial-gradient(circle, rgba(255,253,249,.14), transparent 63%); }
 .focus-chant span { color: var(--focus-color); font-family: 'Playfair Display', serif; font-size: 62px; line-height: 1; }
 .focus-chant small { color: rgba(255,253,249,.72); letter-spacing: .25em; font-size: 9px; }
@@ -325,8 +326,8 @@ h2 { margin-bottom: 20px; color: var(--maroon); font-size: clamp(40px, 5vw, 62px
   .prayer-copy { text-align: center; }
   .prayer-copy .section-kicker { justify-content: center; }
   .prayer-copy p { margin-left: auto; margin-right: auto; }
-  .focus-card { grid-template-columns: 130px 1fr; padding: 45px; gap: 30px; }
-  .focus-chant { position: absolute; width: 125px; height: 125px; right: 45px; bottom: 36px; opacity: .45; }
+  .focus-card { grid-template-columns: 130px 1fr; padding: 45px; gap: 30px; position: relative; }
+  .focus-chant { position: absolute; top: 32px; right: 36px; bottom: auto; width: 115px; height: 115px; opacity: .92; z-index: 3; background: radial-gradient(circle, rgba(255,253,249,.18), transparent 66%); border: 1px solid rgba(255,253,249,.35); }
   .countdown-grid { grid-template-columns: 1fr; }
 }
 
@@ -364,9 +365,9 @@ h2 { margin-bottom: 20px; color: var(--maroon); font-size: clamp(40px, 5vw, 62px
   .focus-card { min-height: 420px; grid-template-columns: 1fr; gap: 20px; padding: 36px 24px 84px 24px; }
   .focus-date { width: 100px; height: 110px; }
   .focus-date strong { font-size: 49px; }
-  .focus-chant { width: 100px; height: 100px; right: 30px; bottom: 33px; }
-  .focus-chant span { font-size: 43px; }
-  .focus-chant small { font-size: 7px; }
+  .focus-chant { position: absolute; top: 24px; right: 20px; bottom: auto; width: 88px; height: 88px; opacity: .95; z-index: 3; background: radial-gradient(circle, rgba(255,253,249,.2), transparent 68%); border: 1px solid rgba(255,253,249,.42); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+  .focus-chant span { font-size: 38px; color: var(--focus-color); }
+  .focus-chant small { font-size: 7px; color: rgba(255,253,249,.9); letter-spacing: .18em; }
   .focus-details h2 { font-size: 43px; }
   .focus-note { max-width: 280px; }
   .focus-facts { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }

@@ -119,6 +119,7 @@
     .focus-facts-meta span { display: inline-flex; align-items: center; gap: 7px; }
     .focus-map-btn { display: inline-flex; align-items: center; gap: 8px; color: #fffdf9; background: rgba(255,253,249,.2); border: 1.5px solid rgba(255,253,249,.42); padding: 9px 20px; border-radius: 999px; font-weight: 700; font-size: 13px; text-decoration: none; cursor: pointer; transition: all .2s ease; backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,.15); touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
     .focus-map-btn:hover, .focus-map-btn:active { background: rgba(255,253,249,.34); border-color: #fff; transform: translateY(-1px); }
+    .map-om-symbol { display: inline-flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 700; line-height: 1; color: var(--focus-color, #f0c419); margin-right: 2px; filter: drop-shadow(0 1px 3px rgba(0,0,0,.35)); }
     .focus-chant { width: 160px; height: 160px; display: grid; place-items: center; align-content: center; gap: 2px; justify-self: end; border-radius: 50%; border: 1px solid rgba(255,253,249,.3); background: radial-gradient(circle, rgba(255,253,249,.14), transparent 63%); }
     .focus-chant span { color: var(--focus-color); font-family: 'Playfair Display', serif; font-size: 62px; line-height: 1; }
     .focus-chant small { color: rgba(255,253,249,.72); letter-spacing: .25em; font-size: 9px; }
@@ -258,8 +259,8 @@
       .prayer-copy { text-align: center; }
       .prayer-copy .section-kicker { justify-content: center; }
       .prayer-copy p { margin-left: auto; margin-right: auto; }
-      .focus-card { grid-template-columns: 130px 1fr; padding: 45px; gap: 30px; }
-      .focus-chant { position: absolute; width: 125px; height: 125px; right: 45px; bottom: 36px; opacity: .45; }
+      .focus-card { grid-template-columns: 130px 1fr; padding: 45px; gap: 30px; position: relative; }
+      .focus-chant { position: absolute; top: 32px; right: 36px; bottom: auto; width: 115px; height: 115px; opacity: .92; z-index: 3; background: radial-gradient(circle, rgba(255,253,249,.18), transparent 66%); border: 1px solid rgba(255,253,249,.35); }
       .slider-hint { display: none; }
     }
     @media (max-width: 660px) {
@@ -291,9 +292,9 @@
       .focus-card { min-height: 420px; grid-template-columns: 1fr; gap: 20px; padding: 36px 24px 86px 24px; }
       .focus-date { width: 100px; height: 110px; }
       .focus-date strong { font-size: 49px; }
-      .focus-chant { width: 100px; height: 100px; right: 30px; bottom: 33px; }
-      .focus-chant span { font-size: 43px; }
-      .focus-chant small { font-size: 7px; }
+      .focus-chant { position: absolute; top: 24px; right: 20px; bottom: auto; width: 88px; height: 88px; opacity: .95; z-index: 3; background: radial-gradient(circle, rgba(255,253,249,.2), transparent 68%); border: 1px solid rgba(255,253,249,.42); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+      .focus-chant span { font-size: 38px; color: var(--focus-color); }
+      .focus-chant small { font-size: 7px; color: rgba(255,253,249,.9); letter-spacing: .18em; }
       .focus-details h2 { font-size: 43px; }
       .focus-note { max-width: 280px; }
       .focus-facts { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
@@ -394,11 +395,13 @@
           <p class="focus-note" id="focusNote">“May every note become a small flame of joy.”</p>
           <div class="focus-facts">
             <div class="focus-facts-meta">
-              <span>🕒 7:00—8:00 P.M.</span>
+              <span id="focusTime">🕒 7:00—8:00 P.M.</span>
               <span id="focusAddress">📍 J-212</span>
             </div>
             <a id="focusMapLink" class="focus-map-btn" href="https://maps.app.goo.gl/L5DQQWvdCVXtma5BA" target="_blank" rel="noreferrer">
-              <span>📍 Open in Google Maps</span> <span style="font-size: 15px; margin-left: 2px;">↗</span>
+              <span class="map-om-symbol">ॐ</span>
+              <span>Open in Google Maps</span>
+              <span style="font-size: 14px; margin-left: 2px;">↗</span>
             </a>
           </div>
         </div>
@@ -518,7 +521,7 @@
       { id: 7, day: 17, month: "OCT", dateLabel: "17 OCT 2026", isoDate: "2026-10-17", weekday: "Saturday", host: "Smt. Parvathi", address: "Dasarahalli", mapUrl: "https://maps.app.goo.gl/wQT7LeoStvRUwP8U9", note: "Together, we carry the light a little farther.", color: "#2a9d8f", colorName: "Sacred teal" },
       { id: 8, day: 18, month: "OCT", dateLabel: "18 OCT 2026", isoDate: "2026-10-18", weekday: "Sunday", host: "Smt. Gayathri", address: "C-306", mapUrl: "https://maps.app.goo.gl/oWwavQHufm5qGAt86", note: "A Sunday offering of melody, silence and love.", color: "#e7d9be", colorName: "Ivory" },
       { id: 9, day: 19, month: "OCT", dateLabel: "19 OCT 2026", isoDate: "2026-10-19", weekday: "Monday", host: "Smt. Lalitha", address: "Vidyaranyapura", mapUrl: "https://maps.app.goo.gl/yFivn1yw1FcFMxio8", note: "The final bhajan evening before we walk together.", color: "#e07248", colorName: "Coral flame" },
-      { id: 10, day: 20, month: "OCT", dateLabel: "20 OCT 2026", isoDate: "2026-10-20", weekday: "Tuesday", host: "Nagar Sankeertan", address: "Sai Nilayam", mapUrl: "https://maps.app.goo.gl/C2VZxTQHJXHNrT116", note: "Let the sacred sound travel through every street.", color: "#c9973c", colorName: "Temple brass" }
+      { id: 10, day: 20, month: "OCT", dateLabel: "20 OCT 2026", isoDate: "2026-10-20", weekday: "Tuesday", time: "Tuesday Morning Bhajans", host: "Tuesday Morning Bhajans · Nagar Sankeertan", address: "Sai Nilayam", mapUrl: "https://maps.app.goo.gl/C2VZxTQHJXHNrT116", note: "Tuesday morning bhajans: sacred chanting to greet the dawn together.", color: "#c9973c", colorName: "Temple brass" }
     ];
 
     // The website knows the time and date internally
@@ -583,6 +586,7 @@
       document.getElementById("focusWeekday").textContent = item.weekday;
       document.getElementById("focusTitle").textContent = item.host;
       document.getElementById("focusNote").textContent = `“${item.note}”`;
+      document.getElementById("focusTime").textContent = `🕒 ${item.time || "7:00—8:00 P.M."}`;
       document.getElementById("focusAddress").textContent = `📍 ${item.address}`;
       const mapLink = document.getElementById("focusMapLink");
       if (item.mapUrl) {
@@ -594,8 +598,8 @@
 
       const done = isItemDone(item);
       const state = getDayState(item.isoDate);
-      let statusText = `${item.weekday} Evening Bhajan`;
-      if (state === "today") statusText = "🌟 Tonight's Sacred Gathering";
+      let statusText = item.id === 10 ? "Tuesday Morning Bhajans" : `${item.weekday} Evening Bhajan`;
+      if (state === "today") statusText = item.id === 10 ? "🌟 Today's Morning Gathering" : "🌟 Tonight's Sacred Gathering";
       if (done) statusText = "Completed Bhajan Offering";
       
       const eyebrow = document.getElementById("focusEyebrow");
@@ -680,11 +684,11 @@
           <td>
             <div class="location-cell">
               <span>${item.address}</span>
-              ${item.mapUrl ? `<a href="${item.mapUrl}" target="_blank" rel="noreferrer">📍 Open map ↗</a>` : ''}
+              ${item.mapUrl ? `<a href="${item.mapUrl}" target="_blank" rel="noreferrer"><span class="map-om-symbol">ॐ</span> Open map ↗</a>` : ''}
             </div>
           </td>
           <td>
-            ${done ? '<span class="status-badge status-done">✓ Done</span>' : `<span class="status-badge status-${state}">${state === "today" ? "Tonight" : state === "past" ? "Completed" : "Upcoming"}</span>`}
+            ${done ? '<span class="status-badge status-done">✓ Done</span>' : `<span class="status-badge status-${state}">${state === "today" ? (item.id === 10 ? "Morning" : "Tonight") : state === "past" ? "Completed" : "Upcoming"}</span>`}
           </td>
           <td style="text-align: right; padding-right: 18px;">
             <button class="done-toggle-btn ${done ? "is-completed" : "is-pending"}" type="button">

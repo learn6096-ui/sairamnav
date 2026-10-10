@@ -24,6 +24,7 @@ type ScheduleItem = {
   dateLabel: string;
   isoDate: string;
   weekday: string;
+  time?: string;
   host: string;
   address: string;
   mapUrl: string;
@@ -42,7 +43,7 @@ const scheduleSeed: ScheduleItem[] = [
   { id: 7, day: 17, month: "OCT", dateLabel: "17 OCT 2026", isoDate: "2026-10-17", weekday: "Saturday", host: "Smt. Parvathi", address: "Dasarahalli", mapUrl: "https://maps.app.goo.gl/wQT7LeoStvRUwP8U9", note: "Together, we carry the light a little farther.", color: "#2a9d8f", colorName: "Sacred teal" },
   { id: 8, day: 18, month: "OCT", dateLabel: "18 OCT 2026", isoDate: "2026-10-18", weekday: "Sunday", host: "Smt. Gayathri", address: "C-306", mapUrl: "https://maps.app.goo.gl/oWwavQHufm5qGAt86", note: "A Sunday offering of melody, silence and love.", color: "#e7d9be", colorName: "Ivory" },
   { id: 9, day: 19, month: "OCT", dateLabel: "19 OCT 2026", isoDate: "2026-10-19", weekday: "Monday", host: "Smt. Lalitha", address: "Vidyaranyapura", mapUrl: "https://maps.app.goo.gl/yFivn1yw1FcFMxio8", note: "The final bhajan evening before we walk together.", color: "#e07248", colorName: "Coral flame" },
-  { id: 10, day: 20, month: "OCT", dateLabel: "20 OCT 2026", isoDate: "2026-10-20", weekday: "Tuesday", host: "Nagar Sankeertan", address: "Sai Nilayam", mapUrl: "https://maps.app.goo.gl/C2VZxTQHJXHNrT116", note: "Let the sacred sound travel through every street.", color: "#c9973c", colorName: "Temple brass" },
+  { id: 10, day: 20, month: "OCT", dateLabel: "20 OCT 2026", isoDate: "2026-10-20", weekday: "Tuesday", time: "Tuesday Morning Bhajans", host: "Tuesday Morning Bhajans · Nagar Sankeertan", address: "Sai Nilayam", mapUrl: "https://maps.app.goo.gl/C2VZxTQHJXHNrT116", note: "Tuesday morning bhajans: sacred chanting to greet the dawn together.", color: "#c9973c", colorName: "Temple brass" },
 ];
 
 const getDayState = (isoDate: string) => {
@@ -255,7 +256,11 @@ export default function Home() {
               {isItemDone(selected)
                 ? "Completed Bhajan Offering"
                 : getDayState(selected.isoDate) === "today"
-                ? "🌟 Tonight's Sacred Gathering"
+                ? selected.id === 10
+                  ? "🌟 Today's Morning Gathering"
+                  : "🌟 Tonight's Sacred Gathering"
+                : selected.id === 10
+                ? "Tuesday Morning Bhajans"
                 : `${selected.weekday} Evening Bhajan`}
               {isItemDone(selected) && <span className="focus-done-pill"><Check size={11} /> Done</span>}
             </p>
@@ -263,7 +268,7 @@ export default function Home() {
             <p className="focus-note">“{selected.note}”</p>
             <div className="focus-facts">
               <div className="focus-facts-meta">
-                <span><Clock3 size={16} /> 7:00—8:00 P.M.</span>
+                <span><Clock3 size={16} /> {selected.time || "7:00—8:00 P.M."}</span>
                 <span><MapPin size={16} /> {selected.address}</span>
               </div>
               {selected.mapUrl && (
@@ -274,7 +279,7 @@ export default function Home() {
                   className="focus-map-btn"
                   aria-label={`Open Google Maps for ${selected.address}`}
                 >
-                  <MapPin size={15} />
+                  <span className="map-om-symbol" aria-hidden="true">ॐ</span>
                   <span>Open in Google Maps</span>
                   <ExternalLink size={14} />
                 </a>
@@ -394,7 +399,7 @@ export default function Home() {
                         <span>{item.address}</span>
                         {item.mapUrl && (
                           <a href={item.mapUrl} target="_blank" rel="noreferrer" aria-label={`Open Google Maps for ${item.address}`}>
-                            <MapPin size={14} /> Open map <ExternalLink size={12} />
+                            <span className="map-om-symbol" aria-hidden="true">ॐ</span> Open map <ExternalLink size={12} />
                           </a>
                         )}
                       </div>
@@ -406,7 +411,7 @@ export default function Home() {
                         </span>
                       ) : (
                         <span className={`status-badge status-${state}`}>
-                          {state === "today" ? "Tonight" : state === "past" ? "Completed" : "Upcoming"}
+                          {state === "today" ? (item.id === 10 ? "Morning" : "Tonight") : state === "past" ? "Completed" : "Upcoming"}
                         </span>
                       )}
                     </td>
