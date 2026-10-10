@@ -98,7 +98,7 @@
     .invitation-signoff span { color: var(--muted); text-transform: uppercase; letter-spacing: .16em; font-size: 10px; font-weight: 700; }
     .invitation-signoff b { color: var(--coral); font-family: 'Playfair Display', serif; font-size: 25px; font-style: italic; font-weight: 500; }
 
-    /* Focus Slider */
+    /* Focus Showcase Card Section */
     .focus-section { padding-bottom: 112px; }
     .focus-card { min-height: 300px; overflow: hidden; position: relative; display: grid; grid-template-columns: 180px 1fr 180px; align-items: center; gap: 45px; padding: 51px 64px; border-radius: 4px; color: #fffdf9; background: var(--maroon); box-shadow: var(--shadow); transition: all .4s ease; }
     .focus-card::before { content: ''; position: absolute; inset: 0; opacity: .3; background: radial-gradient(circle at 86% 18%, var(--focus-color) 0, transparent 20%), radial-gradient(circle at 8% 90%, var(--focus-color) 0, transparent 23%); }
@@ -133,26 +133,8 @@
     .slider-dots button.is-active { transform: scale(1.65); box-shadow: 0 0 0 3px rgba(201,151,60,.18); }
     .slider-hint { color: var(--muted); font-size: 10px; white-space: nowrap; }
 
-    /* 10-Day Festival Countdown & Progress Tracker */
-    .countdown-section { margin: 38px 0 42px; }
-    .countdown-header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
-    .countdown-header-title { display: flex; align-items: center; gap: 9px; color: var(--maroon); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
-    .timer-toggle-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,253,249,.85); color: var(--maroon); font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s ease; backdrop-filter: blur(8px); }
-    .timer-toggle-btn:hover { background: #fff; border-color: var(--coral); color: var(--coral); transform: translateY(-1px); }
-    .timer-collapsed-banner { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-radius: 16px; background: linear-gradient(135deg, rgba(247,230,219,.6), rgba(255,253,249,.95)); border: 1px dashed rgba(201,151,60,.5); box-shadow: 0 4px 20px rgba(114,29,56,.05); cursor: pointer; transition: all .25s ease; }
-    .timer-collapsed-banner:hover { border-color: var(--gold); background: rgba(255,253,249,.98); box-shadow: 0 8px 25px rgba(114,29,56,.08); }
-    .timer-collapsed-copy { display: flex; align-items: center; gap: 12px; color: var(--maroon); font-size: 13px; font-weight: 600; }
-    .countdown-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; transition: all .4s ease; }
-    .countdown-card { position: relative; overflow: hidden; padding: 28px 32px; border-radius: 20px; background: linear-gradient(145deg, #461423, #2b0b15); color: #fffdf9; box-shadow: 0 16px 40px rgba(70,20,35,.22); display: flex; flex-direction: column; justify-content: space-between; }
-    .countdown-card::after { content: ''; position: absolute; top: -60px; right: -60px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(240,196,25,.22), transparent 70%); pointer-events: none; }
-    .countdown-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
-    .countdown-card-head span { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,253,249,.75); }
-    .countdown-digits-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .digit-block { min-width: 64px; display: flex; flex-direction: column; align-items: center; padding: 10px 8px; background: rgba(255,253,249,.08); border: 1px solid rgba(255,253,249,.16); border-radius: 12px; box-shadow: inset 0 2px 6px rgba(0,0,0,.2); }
-    .digit-block strong { font-family: 'Playfair Display', serif; font-size: 34px; line-height: 1; color: #f7da65; text-shadow: 0 2px 10px rgba(247,218,101,.3); }
-    .digit-block small { font-size: 9px; text-transform: uppercase; letter-spacing: .12em; margin-top: 4px; color: rgba(255,253,249,.7); }
-    .digit-sep { font-family: 'Playfair Display', serif; font-size: 28px; color: rgba(255,253,249,.4); margin-bottom: 16px; }
-    .countdown-card-foot { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: rgba(255,253,249,.7); border-top: 1px solid rgba(255,253,249,.12); padding-top: 12px; }
+    /* Festival Offerings Progress Tracker */
+    .countdown-section { margin: 30px 0 42px; }
     .progress-card { padding: 28px 30px; border-radius: 20px; background: rgba(255,253,249,.9); border: 1px solid var(--line); box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
     .progress-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
     .progress-card-head .eyebrow { margin: 0; font-size: 11px; }
@@ -277,17 +259,12 @@
       .prayer-copy p { margin-left: auto; margin-right: auto; }
       .focus-card { grid-template-columns: 130px 1fr; padding: 45px; gap: 30px; }
       .focus-chant { position: absolute; width: 125px; height: 125px; right: 45px; bottom: 36px; opacity: .45; }
-      .countdown-grid { grid-template-columns: 1fr; }
       .slider-hint { display: none; }
     }
     @media (max-width: 660px) {
       .site-header, .hero-section, .content-section, .site-footer { width: calc(100% - 32px); }
       .site-header { min-height: 72px; }
       .menu-button { display: inline-flex; }
-      .countdown-card { padding: 24px 22px; }
-      .digit-block { min-width: 48px; padding: 8px 5px; }
-      .digit-block strong { font-size: 26px; }
-      .digit-sep { font-size: 22px; }
       .progress-card { padding: 22px 20px; }
       .progress-fraction { font-size: 22px; }
       .progress-legend { flex-wrap: wrap; gap: 10px; }
@@ -399,13 +376,14 @@
       </div>
     </section>
 
+    <!-- Focus Showcase Card Section (Showcases Card based on Date & Day) -->
     <section class="focus-section content-section" aria-labelledby="focus-title">
       <div id="focusCard" class="focus-card card-enter" aria-live="polite">
         <div class="focus-orbit orbit-one" aria-hidden="true"></div>
         <div class="focus-orbit orbit-two" aria-hidden="true"></div>
         <div class="focus-date"><span id="focusMonth">OCT</span><strong id="focusDay">11</strong><small id="focusWeekday">Sunday</small></div>
         <div class="focus-details">
-          <p class="eyebrow" id="focusEyebrow"><span class="status-dot"></span> <span id="focusStatusText">A day to hold close</span></p>
+          <p class="eyebrow" id="focusEyebrow"><span class="status-dot"></span> <span id="focusStatusText">Today's Sacred Gathering</span></p>
           <h2 id="focusTitle">Smt. Vijaya</h2>
           <p class="focus-note" id="focusNote">“May every note become a small flame of joy.”</p>
           <div class="focus-facts">
@@ -434,9 +412,25 @@
         <div class="time-pill">🕒 <span>Every day · 7:00—8:00 P.M.</span></div>
       </div>
 
-      <!-- 10-Day Festival Countdown & Progress Tracking -->
-      <div class="countdown-section" id="countdownSectionContainer">
-        <!-- Injected via JS based on hideTimer state -->
+      <!-- Festival Offerings Progress Tracker (Timer hidden, internal date/time active) -->
+      <div class="countdown-section">
+        <div class="progress-card">
+          <div class="progress-card-head">
+            <div>
+              <p class="eyebrow">✓ Navarathri Bhajan Offerings</p>
+              <h3 style="margin: 4px 0 0; color: var(--maroon); font-size: 19px; font-family: 'Playfair Display', serif;">Festival Progress · 11—20 OCT 2026</h3>
+            </div>
+            <div class="progress-fraction"><strong id="completedFraction">0</strong>/10</div>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+          </div>
+          <div class="progress-legend">
+            <span><b id="completedLegend">0</b> completed</span>
+            <span><b id="remainingLegend">10</b> remaining</span>
+            <span><b id="percentLegend">0%</b> accomplished</span>
+          </div>
+        </div>
       </div>
 
       <div class="calendar-legend" id="calendarLegend" aria-label="Nine Navarathri colours"></div>
@@ -506,9 +500,9 @@
   <script>
     const schedule = [
       { id: 1, day: 11, month: "OCT", dateLabel: "11 OCT 2026", isoDate: "2026-10-11", weekday: "Sunday", host: "Smt. Vijaya", address: "J-212", mapUrl: "https://maps.app.goo.gl/L5DQQWvdCVXtma5BA", note: "May every note become a small flame of joy.", color: "#f0c419", colorName: "Sun gold" },
-      { id: 2, day: 12, month: "OCT", dateLabel: "12 OCT 2026", isoDate: "2026-10-12", weekday: "Monday", host: "Smt. Udaya", address: "Pratham Apartments", mapUrl: "https://maps.app.goo.gl/FYHNxDJwZrWxt3Zy5", note: "A gentle evening of gratitude and togetherness.", color: "#f3a6b9", colorName: "Lotus pink" },
+      { id: 2, day: 12, month: "OCT", dateLabel: "12 OCT 2026", isoDate: "2026-10-12", weekday: "Monday", host: "Smt. Udaya", address: "Pratham Apartments", mapUrl: "https://maps.app.goo.gl/GTAJ6SSbQiS1PExi9", note: "A gentle evening of gratitude and togetherness.", color: "#f3a6b9", colorName: "Lotus pink" },
       { id: 3, day: 13, month: "OCT", dateLabel: "13 OCT 2026", isoDate: "2026-10-13", weekday: "Tuesday", host: "Smt. Thulasi", address: "K-109", mapUrl: "https://maps.app.goo.gl/M9fpvzrmtJUkvASH7", note: "Let the rhythm of bhajan steady the heart.", color: "#d33b4b", colorName: "Vermilion" },
-      { id: 4, day: 14, month: "OCT", dateLabel: "14 OCT 2026", isoDate: "2026-10-14", weekday: "Wednesday", host: "Smt. Sudha", address: "M.S. Palya", mapUrl: "https://maps.app.goo.gl/BpmrRi5RGcPNf1ju8", note: "In every chorus, a prayer for peace.", color: "#6aa9dc", colorName: "Sky blue" },
+      { id: 4, day: 14, month: "OCT", dateLabel: "14 OCT 2026", isoDate: "2026-10-14", weekday: "Wednesday", host: "Smt. Sudha", address: "M.S. Palya", mapUrl: "https://maps.app.goo.gl/zeNYhFdWYyF3qaSu5?g_st=ac", note: "In every chorus, a prayer for peace.", color: "#6aa9dc", colorName: "Sky blue" },
       { id: 5, day: 15, month: "OCT", dateLabel: "15 OCT 2026", isoDate: "2026-10-15", weekday: "Thursday", host: "Sri. Rajeshwari", address: "Dasarahalli", mapUrl: "https://maps.app.goo.gl/1a67nFjGELY7ssGe9?g_st=aw", note: "A mid-festival pause to breathe and receive.", color: "#f7a643", colorName: "Marigold" },
       { id: 6, day: 16, month: "OCT", dateLabel: "16 OCT 2026", isoDate: "2026-10-16", weekday: "Friday", host: "Smt. Nirupama", address: "L-101", mapUrl: "https://maps.app.goo.gl/T8rboDFYU3fXtDzt7", note: "May devotion soften the edges of the day.", color: "#8b5bb8", colorName: "Royal violet" },
       { id: 7, day: 17, month: "OCT", dateLabel: "17 OCT 2026", isoDate: "2026-10-17", weekday: "Saturday", host: "Smt. Parvathi", address: "Dasarahalli", mapUrl: "https://maps.app.goo.gl/wQT7LeoStvRUwP8U9", note: "Together, we carry the light a little farther.", color: "#2a9d8f", colorName: "Sacred teal" },
@@ -517,6 +511,7 @@
       { id: 10, day: 20, month: "OCT", dateLabel: "20 OCT 2026", isoDate: "2026-10-20", weekday: "Tuesday", host: "Nagar Sankeertan", address: "Sai Nilayam", mapUrl: "https://maps.app.goo.gl/C2VZxTQHJXHNrT116", note: "Let the sacred sound travel through every street.", color: "#c9973c", colorName: "Temple brass" }
     ];
 
+    // The website knows the time and date internally
     function getDayState(isoDate) {
       const today = new Date();
       const localToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
@@ -525,6 +520,7 @@
       return itemDate < localToday ? "past" : "upcoming";
     }
 
+    // 24-hour cycle check: event concludes at 8:00 PM (20:00)
     function isPast24Hours(isoDate) {
       const now = new Date().getTime();
       const eventEndTime = new Date(`${isoDate}T20:00:00`).getTime();
@@ -535,11 +531,6 @@
     try {
       const saved = localStorage.getItem("sai_done_items");
       if (saved) manualDone = JSON.parse(saved);
-    } catch (e) {}
-
-    let hideTimer = false;
-    try {
-      hideTimer = localStorage.getItem("sai_hide_timer") === "true";
     } catch (e) {}
 
     function isItemDone(item) {
@@ -554,21 +545,24 @@
         localStorage.setItem("sai_done_items", JSON.stringify(manualDone));
       } catch (e) {}
       renderTable();
-      renderCountdownAndProgress();
+      renderProgress();
       renderFocusCard(selectedId);
     }
 
-    function toggleHideTimer() {
-      hideTimer = !hideTimer;
-      try {
-        localStorage.setItem("sai_hide_timer", String(hideTimer));
-      } catch (e) {}
-      renderCountdownAndProgress();
-    }
-
+    // Showcase card chosen based on date and day
     let selectedId = 1;
-    const todayItem = schedule.find(item => getDayState(item.isoDate) === "today");
-    if (todayItem) selectedId = todayItem.id;
+    const todayCard = schedule.find(item => getDayState(item.isoDate) === "today");
+    if (todayCard) {
+      selectedId = todayCard.id;
+    } else {
+      const now = new Date().getTime();
+      const firstDay = new Date(`${schedule[0].isoDate}T00:00:00`).getTime();
+      if (now < firstDay) {
+        selectedId = 1;
+      } else {
+        selectedId = schedule[schedule.length - 1].id;
+      }
+    }
 
     function renderFocusCard(id) {
       const item = schedule.find(s => s.id === id) || schedule[0];
@@ -590,7 +584,8 @@
 
       const done = isItemDone(item);
       const state = getDayState(item.isoDate);
-      let statusText = state === "today" ? "Tonight’s bhajan" : "A day to hold close";
+      let statusText = `${item.weekday} Evening Bhajan`;
+      if (state === "today") statusText = "🌟 Tonight's Sacred Gathering";
       if (done) statusText = "Completed Bhajan Offering";
       
       const eyebrow = document.getElementById("focusEyebrow");
@@ -697,122 +692,18 @@
       });
     }
 
-    function renderCountdownAndProgress() {
-      const container = document.getElementById("countdownSectionContainer");
+    function renderProgress() {
       const completedCount = schedule.filter(s => isItemDone(s)).length;
       const progressPercent = Math.round((completedCount / schedule.length) * 100);
 
-      const festivalEnd = new Date("2026-10-20T21:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = festivalEnd - now;
-      let days = 0, hours = 0, minutes = 0, seconds = 0, isFinished = false;
-      if (diff <= 0) {
-        isFinished = true;
-      } else {
-        days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        minutes = Math.floor((diff / (1000 * 60)) % 60);
-        seconds = Math.floor((diff / 1000) % 60);
-      }
-
-      if (hideTimer) {
-        container.innerHTML = `
-          <div class="timer-collapsed-banner" id="bannerToggle">
-            <div class="timer-collapsed-copy">
-              <span>⏱</span>
-              <span><strong>10-Day Navarathri Countdown</strong> is hidden · ${completedCount} of 10 bhajans completed (${progressPercent}%)</span>
-            </div>
-            <button class="timer-toggle-btn" type="button">👁 Show timer</button>
-          </div>
-        `;
-        document.getElementById("bannerToggle").addEventListener("click", toggleHideTimer);
-      } else {
-        container.innerHTML = `
-          <div class="countdown-header-row">
-            <div class="countdown-header-title">
-              <span>🔥</span>
-              <span>10 Days of Divine Navarathri Bhajans</span>
-            </div>
-            <button class="timer-toggle-btn" id="hideTimerBtn" type="button">👁‍🗨 Hide timer</button>
-          </div>
-          <div class="countdown-grid">
-            <div class="countdown-card">
-              <div class="countdown-card-head">
-                <span>⏱ 10-Day Festival Live Timer</span>
-                <span>${isFinished ? "Concluded" : "11—20 OCT 2026"}</span>
-              </div>
-              <div class="countdown-digits-row">
-                <div class="digit-block">
-                  <strong id="timerDays">${String(days).padStart(2, "0")}</strong>
-                  <small>Days</small>
-                </div>
-                <span class="digit-sep">:</span>
-                <div class="digit-block">
-                  <strong id="timerHours">${String(hours).padStart(2, "0")}</strong>
-                  <small>Hours</small>
-                </div>
-                <span class="digit-sep">:</span>
-                <div class="digit-block">
-                  <strong id="timerMins">${String(minutes).padStart(2, "0")}</strong>
-                  <small>Mins</small>
-                </div>
-                <span class="digit-sep">:</span>
-                <div class="digit-block">
-                  <strong id="timerSecs">${String(seconds).padStart(2, "0")}</strong>
-                  <small>Secs</small>
-                </div>
-              </div>
-              <div class="countdown-card-foot">
-                <span>Every evening 7:00—8:00 P.M.</span>
-                <span>10 sacred gatherings</span>
-              </div>
-            </div>
-            <div class="progress-card">
-              <div class="progress-card-head">
-                <div>
-                  <p class="eyebrow">✓ Bhajan Offerings Status</p>
-                  <h3 style="margin: 4px 0 0; color: var(--maroon); font-size: 19px; font-family: 'Playfair Display', serif;">Festival Progress</h3>
-                </div>
-                <div class="progress-fraction"><strong>${completedCount}</strong>/10</div>
-              </div>
-              <div class="progress-bar-track">
-                <div class="progress-bar-fill" style="width: ${progressPercent}%;"></div>
-              </div>
-              <div class="progress-legend">
-                <span><b>${completedCount}</b> completed</span>
-                <span><b>${10 - completedCount}</b> remaining</span>
-                <span><b>${progressPercent}%</b> accomplished</span>
-              </div>
-            </div>
-          </div>
-        `;
-        document.getElementById("hideTimerBtn").addEventListener("click", toggleHideTimer);
-      }
+      document.getElementById("completedFraction").textContent = completedCount;
+      document.getElementById("progressBarFill").style.width = `${progressPercent}%`;
+      document.getElementById("completedLegend").textContent = completedCount;
+      document.getElementById("remainingLegend").textContent = 10 - completedCount;
+      document.getElementById("percentLegend").textContent = `${progressPercent}%`;
     }
 
-    // Live 1-second timer tick
-    setInterval(() => {
-      if (hideTimer) return;
-      const festivalEnd = new Date("2026-10-20T21:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = festivalEnd - now;
-      if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        const dEl = document.getElementById("timerDays");
-        const hEl = document.getElementById("timerHours");
-        const mEl = document.getElementById("timerMins");
-        const sEl = document.getElementById("timerSecs");
-        if (dEl) dEl.textContent = String(days).padStart(2, "0");
-        if (hEl) hEl.textContent = String(hours).padStart(2, "0");
-        if (mEl) mEl.textContent = String(minutes).padStart(2, "0");
-        if (sEl) sEl.textContent = String(seconds).padStart(2, "0");
-      }
-    }, 1000);
-
-    // Auto card slider (every 6.5 seconds)
+    // Auto card slider (rotates smoothly every 6.5s)
     let sliderInterval = setInterval(() => {
       const currentIndex = schedule.findIndex(s => s.id === selectedId);
       selectedId = schedule[(currentIndex + 1) % schedule.length].id;
@@ -924,7 +815,7 @@
     renderDots();
     renderLegend();
     renderTable();
-    renderCountdownAndProgress();
+    renderProgress();
     renderFocusCard(selectedId);
   </script>
 </body>

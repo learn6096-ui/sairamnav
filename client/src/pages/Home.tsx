@@ -6,8 +6,6 @@ import {
   ChevronRight,
   Clock3,
   ExternalLink,
-  Eye,
-  EyeOff,
   Flame,
   MapPin,
   Menu,
@@ -16,7 +14,6 @@ import {
   RotateCcw,
   Sparkles,
   SunMedium,
-  Timer,
   X,
 } from "lucide-react";
 
@@ -37,9 +34,9 @@ type ScheduleItem = {
 
 const scheduleSeed: ScheduleItem[] = [
   { id: 1, day: 11, month: "OCT", dateLabel: "11 OCT 2026", isoDate: "2026-10-11", weekday: "Sunday", host: "Smt. Vijaya", address: "J-212", mapUrl: "https://maps.app.goo.gl/L5DQQWvdCVXtma5BA", note: "May every note become a small flame of joy.", color: "#f0c419", colorName: "Sun gold" },
-  { id: 2, day: 12, month: "OCT", dateLabel: "12 OCT 2026", isoDate: "2026-10-12", weekday: "Monday", host: "Smt. Udaya", address: "Pratham Apartments", mapUrl: "https://maps.app.goo.gl/FYHNxDJwZrWxt3Zy5", note: "A gentle evening of gratitude and togetherness.", color: "#f3a6b9", colorName: "Lotus pink" },
+  { id: 2, day: 12, month: "OCT", dateLabel: "12 OCT 2026", isoDate: "2026-10-12", weekday: "Monday", host: "Smt. Udaya", address: "Pratham Apartments", mapUrl: "https://maps.app.goo.gl/GTAJ6SSbQiS1PExi9", note: "A gentle evening of gratitude and togetherness.", color: "#f3a6b9", colorName: "Lotus pink" },
   { id: 3, day: 13, month: "OCT", dateLabel: "13 OCT 2026", isoDate: "2026-10-13", weekday: "Tuesday", host: "Smt. Thulasi", address: "K-109", mapUrl: "https://maps.app.goo.gl/M9fpvzrmtJUkvASH7", note: "Let the rhythm of bhajan steady the heart.", color: "#d33b4b", colorName: "Vermilion" },
-  { id: 4, day: 14, month: "OCT", dateLabel: "14 OCT 2026", isoDate: "2026-10-14", weekday: "Wednesday", host: "Smt. Sudha", address: "M.S. Palya", mapUrl: "https://maps.app.goo.gl/BpmrRi5RGcPNf1ju8", note: "In every chorus, a prayer for peace.", color: "#6aa9dc", colorName: "Sky blue" },
+  { id: 4, day: 14, month: "OCT", dateLabel: "14 OCT 2026", isoDate: "2026-10-14", weekday: "Wednesday", host: "Smt. Sudha", address: "M.S. Palya", mapUrl: "https://maps.app.goo.gl/zeNYhFdWYyF3qaSu5?g_st=ac", note: "In every chorus, a prayer for peace.", color: "#6aa9dc", colorName: "Sky blue" },
   { id: 5, day: 15, month: "OCT", dateLabel: "15 OCT 2026", isoDate: "2026-10-15", weekday: "Thursday", host: "Sri. Rajeshwari", address: "Dasarahalli", mapUrl: "https://maps.app.goo.gl/1a67nFjGELY7ssGe9?g_st=aw", note: "A mid-festival pause to breathe and receive.", color: "#f7a643", colorName: "Marigold" },
   { id: 6, day: 16, month: "OCT", dateLabel: "16 OCT 2026", isoDate: "2026-10-16", weekday: "Friday", host: "Smt. Nirupama", address: "L-101", mapUrl: "https://maps.app.goo.gl/T8rboDFYU3fXtDzt7", note: "May devotion soften the edges of the day.", color: "#8b5bb8", colorName: "Royal violet" },
   { id: 7, day: 17, month: "OCT", dateLabel: "17 OCT 2026", isoDate: "2026-10-17", weekday: "Saturday", host: "Smt. Parvathi", address: "Dasarahalli", mapUrl: "https://maps.app.goo.gl/wQT7LeoStvRUwP8U9", note: "Together, we carry the light a little farther.", color: "#2a9d8f", colorName: "Sacred teal" },
@@ -56,7 +53,7 @@ const getDayState = (isoDate: string) => {
   return itemDate < localToday ? "past" : "upcoming";
 };
 
-// Check if 24 hours have elapsed for this event
+// Check if 24 hours have elapsed for this event (event ends at 8:00 PM)
 const isPast24Hours = (isoDate: string) => {
   const now = new Date().getTime();
   const eventEndTime = new Date(`${isoDate}T20:00:00`).getTime();
@@ -68,23 +65,21 @@ export default function Home() {
   const [welcomeFading, setWelcomeFading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const schedule = scheduleSeed;
+
+  // Automatically showcase the card based on current date & day
   const [selectedId, setSelectedId] = useState<number>(() => {
-    const active = scheduleSeed.find((item) => getDayState(item.isoDate) === "today");
-    return active?.id ?? 1;
+    const todayCard = scheduleSeed.find((item) => getDayState(item.isoDate) === "today");
+    if (todayCard) return todayCard.id;
+    const now = new Date().getTime();
+    const firstDay = new Date(`${scheduleSeed[0].isoDate}T00:00:00`).getTime();
+    if (now < firstDay) return 1;
+    return scheduleSeed[scheduleSeed.length - 1].id;
   });
+
   const [cardAnimating, setCardAnimating] = useState(false);
   const [chanting, setChanting] = useState(false);
   const [chantCount, setChantCount] = useState(0);
   const [chantComplete, setChantComplete] = useState(false);
-
-  // 10-day countdown timer hide/show state
-  const [hideTimer, setHideTimer] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("sai_hide_timer") === "true";
-    } catch {
-      return false;
-    }
-  });
 
   // Manual done state overrides (persisted to localStorage)
   const [manualDone, setManualDone] = useState<Record<number, boolean>>(() => {
@@ -111,17 +106,7 @@ export default function Home() {
       const next = { ...prev, [id]: !current };
       try {
         localStorage.setItem("sai_done_items", JSON.stringify(next));
-      } catch {}
-      return next;
-    });
-  };
-
-  const toggleHideTimer = () => {
-    setHideTimer((prev) => {
-      const next = !prev;
-      try {
-        localStorage.setItem("sai_hide_timer", String(next));
-      } catch {}
+      } catch { }
       return next;
     });
   };
@@ -131,36 +116,6 @@ export default function Home() {
     [schedule, manualDone]
   );
   const progressPercent = Math.round((completedCount / schedule.length) * 100);
-
-  // 10-Day Festival Live Timer
-  const [timeLeft, setTimeLeft] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-    isFinished: boolean;
-  }>({ days: 0, hours: 0, minutes: 0, seconds: 0, isFinished: false });
-
-  useEffect(() => {
-    const festivalEnd = new Date("2026-10-20T21:00:00").getTime();
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const diff = festivalEnd - now;
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isFinished: true });
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      setTimeLeft({ days, hours, minutes, seconds, isFinished: false });
-    };
-
-    updateCountdown();
-    const timer = window.setInterval(updateCountdown, 1000);
-    return () => window.clearInterval(timer);
-  }, []);
 
   const selected = useMemo(
     () => schedule.find((item) => item.id === selectedId) ?? schedule[0],
@@ -203,6 +158,7 @@ export default function Home() {
     }, 400);
   };
 
+  // Auto-transition to showcase each card in order every 6.5s
   useEffect(() => {
     const timer = window.setInterval(() => {
       setSelectedId((currentId) => {
@@ -287,6 +243,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Focus Showcase Card Section - Driven by Date and Day */}
       <section className="focus-section content-section" aria-labelledby="focus-title">
         <div key={selected.id} className={`focus-card focus-card-transition ${cardAnimating ? "card-exit" : "card-enter"}`} style={{ "--focus-color": selected.color } as React.CSSProperties} aria-live="polite">
           <div className="focus-orbit orbit-one" aria-hidden="true" />
@@ -295,7 +252,11 @@ export default function Home() {
           <div className="focus-details">
             <p className="eyebrow">
               <span className="status-dot" />{" "}
-              {isItemDone(selected) ? "Completed Bhajan Offering" : getDayState(selected.isoDate) === "today" ? "Tonight’s bhajan" : "A day to hold close"}
+              {isItemDone(selected)
+                ? "Completed Bhajan Offering"
+                : getDayState(selected.isoDate) === "today"
+                ? "🌟 Tonight's Sacred Gathering"
+                : `${selected.weekday} Evening Bhajan`}
               {isItemDone(selected) && <span className="focus-done-pill"><Check size={11} /> Done</span>}
             </p>
             <h2 id="focus-title">{selected.host}</h2>
@@ -336,103 +297,32 @@ export default function Home() {
         </div>
         <div className="schedule-intro"><p>Each colour carries a different mood of devotion. Select a day to spotlight it above, or open the map link to find your way there.</p><div className="time-pill"><Clock3 size={16} /><span>Every day · 7:00—8:00 P.M.</span></div></div>
 
-        {/* 10-Day Festival Countdown & Progress Tracking */}
+        {/* Festival Progress Tracker (Timer UI hidden, internal time retained) */}
         <div className="countdown-section">
-          {hideTimer ? (
-            <div
-              className="timer-collapsed-banner"
-              onClick={toggleHideTimer}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === "Enter" && toggleHideTimer()}
-            >
-              <div className="timer-collapsed-copy">
-                <Timer size={19} />
-                <span>
-                  <strong>10-Day Navarathri Countdown</strong> is hidden · {completedCount} of 10 bhajans completed ({progressPercent}%)
-                </span>
+          <div className="progress-card">
+            <div className="progress-card-head">
+              <div>
+                <p className="eyebrow"><CheckCircle2 size={14} /> Navarathri Bhajan Offerings</p>
+                <h3 style={{ margin: "4px 0 0", color: "var(--maroon)", fontSize: "19px", fontFamily: "'Playfair Display', serif" }}>
+                  Festival Progress · 11—20 OCT 2026
+                </h3>
               </div>
-              <button className="timer-toggle-btn" type="button" onClick={(e) => { e.stopPropagation(); toggleHideTimer(); }}>
-                <Eye size={14} /> Show timer
-              </button>
+              <div className="progress-fraction">
+                <strong>{completedCount}</strong>/10
+              </div>
             </div>
-          ) : (
-            <>
-              <div className="countdown-header-row">
-                <div className="countdown-header-title">
-                  <Flame size={16} />
-                  <span>10 Days of Divine Navarathri Bhajans</span>
-                </div>
-                <button
-                  className="timer-toggle-btn"
-                  type="button"
-                  onClick={toggleHideTimer}
-                  title="Hide 10-day countdown timer"
-                >
-                  <EyeOff size={14} /> Hide timer
-                </button>
-              </div>
-
-              <div className="countdown-grid">
-                <div className="countdown-card">
-                  <div className="countdown-card-head">
-                    <span><Timer size={15} /> 10-Day Festival Live Timer</span>
-                    <span>{timeLeft.isFinished ? "Concluded" : "11—20 OCT 2026"}</span>
-                  </div>
-                  <div className="countdown-digits-row">
-                    <div className="digit-block">
-                      <strong>{String(timeLeft.days).padStart(2, "0")}</strong>
-                      <small>Days</small>
-                    </div>
-                    <span className="digit-sep">:</span>
-                    <div className="digit-block">
-                      <strong>{String(timeLeft.hours).padStart(2, "0")}</strong>
-                      <small>Hours</small>
-                    </div>
-                    <span className="digit-sep">:</span>
-                    <div className="digit-block">
-                      <strong>{String(timeLeft.minutes).padStart(2, "0")}</strong>
-                      <small>Mins</small>
-                    </div>
-                    <span className="digit-sep">:</span>
-                    <div className="digit-block">
-                      <strong>{String(timeLeft.seconds).padStart(2, "0")}</strong>
-                      <small>Secs</small>
-                    </div>
-                  </div>
-                  <div className="countdown-card-foot">
-                    <span>Every evening 7:00—8:00 P.M.</span>
-                    <span>10 sacred gatherings</span>
-                  </div>
-                </div>
-
-                <div className="progress-card">
-                  <div className="progress-card-head">
-                    <div>
-                      <p className="eyebrow"><CheckCircle2 size={14} /> Bhajan Offerings Status</p>
-                      <h3 style={{ margin: "4px 0 0", color: "var(--maroon)", fontSize: "19px", fontFamily: "'Playfair Display', serif" }}>
-                        Festival Progress
-                      </h3>
-                    </div>
-                    <div className="progress-fraction">
-                      <strong>{completedCount}</strong>/10
-                    </div>
-                  </div>
-                  <div className="progress-bar-track">
-                    <div
-                      className="progress-bar-fill"
-                      style={{ width: `${progressPercent}%` }}
-                    />
-                  </div>
-                  <div className="progress-legend">
-                    <span><b>{completedCount}</b> completed</span>
-                    <span><b>{10 - completedCount}</b> remaining</span>
-                    <span><b>{progressPercent}%</b> accomplished</span>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
+            <div className="progress-bar-track">
+              <div
+                className="progress-bar-fill"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
+            <div className="progress-legend">
+              <span><b>{completedCount}</b> completed</span>
+              <span><b>{10 - completedCount}</b> remaining</span>
+              <span><b>{progressPercent}%</b> accomplished</span>
+            </div>
+          </div>
         </div>
 
         <div className="calendar-legend" aria-label="Nine Navarathri colours">
